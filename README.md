@@ -1,2 +1,0 @@
-# BankofLC
-银店
