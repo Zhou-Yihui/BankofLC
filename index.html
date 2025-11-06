@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>大涼銀行｜安全登入</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+
+  <!-- ✅ PWA -->
+  <meta name="theme-color" content="#8B0000">
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="manifest" href="/BankofLC/manifest.json">
+  <link rel="icon" sizes="512x512" href="/BankofLC/1762443181715.png">
+  <link rel="apple-touch-icon" href="/BankofLC/1762443181715.png">
+
+  <style>
+    body{
+      margin:0;padding:0;
+      font-family:"Microsoft JhengHei","PMingLiU",serif;
+      background:linear-gradient(rgba(139,0,0,.8),rgba(0,0,0,.95)),
+      url("/BankofLC/bg.svg");
+      background-size:cover;
+      color:#fff;
+      min-height:100vh;
+      display:flex;align-items:center;justify-content:center;
+    }
+
+    .login-card{
+      width:90%;max-width:380px;
+      background:rgba(0,0,0,.6);
+      padding:28px 20px;
+      border-radius:14px;
+      border:2px solid #D4AF37;
+      box-shadow:0 0 18px rgba(255,215,0,.4);
+      position:relative;
+    }
+
+    .bank-logo{
+      width:78px;height:78px;margin:0 auto 10px;
+      background:radial-gradient(#FFD700,#D4AF37);
+      border-radius:16px;
+      display:flex;align-items:center;justify-content:center;
+      border:3px solid #fff;
+      box-shadow:0 0 14px rgba(255,215,0,.8);
+    }
+    .bank-logo span{font-size:34px;font-weight:bold;color:#8B0000}
+
+    .bank-title{
+      text-align:center;
+      font-size:26px;font-weight:bold;
+      color:#FFD700;
+      margin:6px 0;
+      text-shadow:0 0 8px rgba(255,215,0,.5);
+    }
+    .bank-sub{
+      text-align:center;font-size:13px;color:#ccc;margin-bottom:15px;
+    }
+
+    input{
+      width:100%;padding:12px 15px;margin:12px 0;
+      background:rgba(0,0,0,.45);
+      border:1px solid #D4AF37;
+      border-radius:6px;font-size:16px;color:#fff;
+    }
+    input::placeholder{color:#bbb}
+
+    button{
+      width:100%;padding:12px;margin-top:10px;
+      background:linear-gradient(#8B0000,#6B0000);
+      border:2px solid #FFD700;border-radius:6px;
+      color:#FFD700;font-size:18px;font-weight:bold;
+      cursor:pointer;transition:.25s;
+    }
+    button:hover{
+      background:linear-gradient(#A52A2A,#8B0000);
+      box-shadow:0 0 12px rgba(255,215,0,.5);
+    }
+
+    .privacy{
+      text-align:center;font-size:12px;color:#ccc;margin-top:15px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="login-card">
+    <div class="bank-logo"><span>涼</span></div>
+    <div class="bank-title">大涼銀行</div>
+    <div class="bank-sub">國祚金融 ‧ 萬邦通兌</div>
+
+    <input id="acc" placeholder="帳戶名 / 卡號" maxlength="20">
+    <input id="pwd" type="password" placeholder="登入密碼" maxlength="20"
+           onkeydown="if(event.key==='Enter')login()">
+
+    <button onclick="register()">開戶並登入</button>
+    <button onclick="login()">安全登入</button>
+
+    <div class="privacy">本銀行採用本地加密儲存 · 保護您的金融安全</div>
+  </div>
+
+  <!-- ✅ CryptoJS SHA256 -->
+  <script src="https://cdn.jsdelivr.net/npm/crypto-js@4.1.1/crypto-js.min.js"></script>
+
+  <script>
+    const loadUsers = () => JSON.parse(localStorage.getItem('daliang_bank_users') || '{}');
+    const saveUsers = u => localStorage.setItem('daliang_bank_users', JSON.stringify(u));
+    const sha = s => CryptoJS.SHA256(s).toString();
+
+    function register(){
+      const a = acc.value.trim(), p = pwd.value.trim();
+      if(!a || !p) return alert("請輸入帳戶名與密碼");
+      if(p.length < 6) return alert("密碼需至少 6 位");
+
+      const db = loadUsers();
+      if(db[a]) return alert("此帳戶已存在");
+
+      db[a] = { pwd: sha(p), balance: 10000, transactions: [] };
+      saveUsers(db);
+
+      localStorage.setItem("daliang_bank_current", a);
+      location.href="/BankofLC/bank-home.html";
+    }
+
+    function login(){
+      const a = acc.value.trim(), p = pwd.value.trim();
+      const db = loadUsers();
+      if(!db[a] || db[a].pwd !== sha(p))
+        return alert("帳戶名或密碼錯誤");
+
+      localStorage.setItem("daliang_bank_current", a);
+      location.href="/BankofLC/bank-home.html";
+    }
+  </script>
+
+  <!-- ✅ PWA 註冊 -->
+  <script>
+    if('serviceWorker' in navigator){
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/BankofLC/sw.js')
+      });
+    }
+  </script>
+
+</body>
+</html>
