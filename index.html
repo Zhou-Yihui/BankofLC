@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>大涼銀行 - 國祚金融</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <!-- PWA -->
+  <meta name="theme-color" content="#8B0000">
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" sizes="512x512" href="1762443181715.png" type="image/png">
+
+  <style>
+    body{margin:0;padding:0;font-family:"Microsoft JhengHei","PMingLiU",serif;background:linear-gradient(rgba(139,0,0,.9),rgba(0,0,0,.95)),url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");color:#fff;min-height:100vh;display:flex;align-items:center;justify-content:center}
+    .bank-header{text-align:center;margin-bottom:20px}
+    .bank-logo{width:80px;height:80px;margin:0 auto;background:radial-gradient(#FFD700,#D4AF37);border-radius:16px;display:flex;align-items:center;justify-content:center;border:3px solid #fff;box-shadow:0 0 15px rgba(255,215,0,.8)}
+    .bank-logo span{font-size:36px;font-weight:bold;color:#8B0000}
+    .bank-title{font-size:28px;font-weight:bold;margin:10px 0 5px;color:#FFD700;text-shadow:0 0 8px rgba(255,215,0,.6)}
+    .bank-subtitle{font-size:14px;color:#ccc}
+    .login-card{width:90%;max-width:400px;background:rgba(0,0,0,.7);padding:30px 20px;border-radius:12px;border:2px solid #D4AF37;box-shadow:0 0 20px rgba(139,0,0,.5);position:relative}
+    .login-card::before,.login-card::after{content:"";position:absolute;width:20px;height:20px;border-top:3px solid #FFD700;border-left:3px solid #FFD700;top:10px;left:10px}
+    .login-card::after{border-top:none;border-left:none;border-bottom:3px solid #FFD700;border-right:3px solid #FFD700;top:auto;left:auto;bottom:10px;right:10px}
+    .login-card input{width:100%;padding:12px 15px;margin:12px 0;box-sizing:border-box;background:rgba(0,0,0,.5);border:1px solid #D4AF37;border-radius:6px;color:#fff;font-size:16px}
+    .login-card input::placeholder{color:#ccc}
+    .login-card button{width:100%;padding:12px;margin:8px 0;background:linear-gradient(#8B0000,#6B0000);border:2px solid #FFD700;border-radius:6px;color:#FFD700;font-size:18px;font-weight:bold;cursor:pointer;transition:all .3s}
+    .login-card button:hover{background:linear-gradient(#A52A2A,#8B0000);box-shadow:0 0 10px rgba(255,215,0,.5)}
+    .privacy-tip{font-size:12px;color:#ccc;text-align:center;margin-top:15px}
+  </style>
+</head>
+<body>
+  <div class="login-card">
+    <div class="bank-header">
+      <div class="bank-logo"><span>涼</span></div>
+      <div class="bank-title">大涼銀行</div>
+      <div class="bank-subtitle">國祚金融 · 萬邦通兌</div>
+    </div>
+    <!-- ✅ 账号：普通文本，支持中英数符号 -->
+    <input id="account" placeholder="帳戶名 / 卡號" maxlength="20">
+    <!-- ✅ 密码：用 text + 黑点隐藏，全键盘输入 -->
+    <input id="pwd" type="text" autocomplete="off" inputmode="text"
+           style="-webkit-text-security:disc;text-security:disc;"
+           placeholder="登入密碼" maxlength="20"
+           onkeydown="if(event.key==='Enter')handleLogin()">
+    <button onclick="handleRegister()">開戶並登入</button>
+    <button onclick="handleLogin()">安全登入</button>
+    <div class="privacy-tip">本銀行遵循《大涼國金融隱私法典》，數據本地加密儲存</div>
+  </div>
+
+  <!-- PWA -->
+  <script>
+    if('serviceWorker' in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js').then(()=>console.log('PWA 註冊成功')).catch(err=>console.log('PWA 註冊失敗:',err)));
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/crypto-js@4.1.1/crypto-js.min.js"></script>
+  <script>
+    const getUsers=()=>JSON.parse(localStorage.getItem('daliang_bank_users')||'{}');
+    const setUsers=u=>localStorage.setItem('daliang_bank_users',JSON.stringify(u));
+    const hash=pwd=>CryptoJS.SHA256(pwd).toString();
+
+    function handleRegister(){
+      const acc=document.getElementById('account').value.trim();
+      const pwd=document.getElementById('pwd').value.trim();
+      if(!acc||!pwd)return alert('請輸入帳戶名和密碼');
+      if(pwd.length<6)return alert('密碼需不少於6位');
+      const users=getUsers();
+      if(users[acc])return alert('該帳戶已存在');
+      users[acc]={pwd:hash(pwd),balance:10000,transactions:[]};
+      setUsers(users);
+      loginSuccess(acc);
+    }
+    function handleLogin(){
+      const acc=document.getElementById('account').value.trim();
+      const pwd=document.getElementById('pwd').value.trim();
+      const users=getUsers();
+      if(!users[acc]||users[acc].pwd!==hash(pwd))return alert('帳戶名或密碼錯誤');
+      loginSuccess(acc);
+    }
+    function loginSuccess(acc){
+      localStorage.setItem('daliang_bank_current',acc);
+      location.href='bank-home.html';
+    }
+  </script>
+</body>
+</html>
