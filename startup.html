@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>大涼銀行啟動畫面</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #000;
+    }
+    .image-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      transition: opacity 1s ease-in-out;
+    }
+    .image-container {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="image-container">
+    <img src="1762444418649.png" id="img1" alt="image 1" style="opacity: 1;">
+    <img src="1762444429563.png" id="img2" alt="image 2" style="opacity: 0;">
+  </div>
+
+  <script>
+    let currentImage = 1;
+    const images = document.querySelectorAll('.image-container img');
+    const delay = 3000; // 3秒切换一次
+
+    // 切换图片
+    function switchImage() {
+      // 先设置当前显示的图片的透明度为 0
+      images[currentImage - 1].style.opacity = 0;
+
+      // 切换到下一个图片
+      currentImage = (currentImage % images.length) + 1;
+
+      // 设置新图片的透明度为 1
+      images[currentImage - 1].style.opacity = 1;
+    }
+
+    // 每隔 3秒切换一次图片
+    setInterval(switchImage, delay);
+
+    // 设定展示时间，最后跳转到 login.html（登录页面）
+    setTimeout(() => {
+      window.location.href = 'login.html';  // 登录页面
+    }, delay * images.length + 1000); // 3秒 * 图片数量 + 1秒过渡时间
+  </script>
+
+</body>
+</html>
